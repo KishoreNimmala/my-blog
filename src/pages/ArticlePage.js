@@ -25,5 +25,3 @@ const ArticlePage=({match})=>{
 }
 
 export default ArticlePage;
-
-
