@@ -4,6 +4,7 @@ import ArticlesList from '../components/ArticlesList';
 import NotFoundPage from '../components/NotFoundPage';
 
 const ArticlePage=({match})=>{
+    
     const name=match.params.name;
     const article=articleContent.find(article=>article.name===name);
     if(!article) return <NotFoundPage />
