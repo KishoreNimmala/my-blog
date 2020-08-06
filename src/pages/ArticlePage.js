@@ -10,9 +10,9 @@ const ArticlePage=({match})=>{
     
     useEffect(()=>{
         setArticleInfo({
-            upvotes:3
+            upvotes:Math.ceil(Math.random()*10)
         });
-    })
+    },[name]);
 
     const [articleInfo,setArticleInfo]=useState({upvotes:0,comments:[]});
 
