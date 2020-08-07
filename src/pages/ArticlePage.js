@@ -2,6 +2,9 @@ import React,{useState,useEffect }from 'react';
 import articleContent from './article-content';
 import ArticlesList from '../components/ArticlesList';
 import NotFoundPage from '../components/NotFoundPage';
+import CommentsList from '../components/CommentsList';
+
+
 
 const ArticlePage=({match})=>{
     
@@ -10,14 +13,12 @@ const ArticlePage=({match})=>{
     
     useEffect(()=>{
         const fetchData= async () =>{
-            const result =await fetch(`/api/articles/${name}`);
+            const result =await fetch(`/api/articles/${name}/`);
             const body=await result.json();
             setArticleInfo(body);
         }
         fetchData();
-        setArticleInfo({
-            upvotes:Math.ceil(Math.random()*10)
-        });
+        
     },[name]);
 
     const [articleInfo,setArticleInfo]=useState({upvotes:0,comments:[]});
@@ -35,6 +36,7 @@ const ArticlePage=({match})=>{
                     {paragraph}
                 </p>
             ))}
+            <CommentsList comments={articleInfo.comments} />
             <h1>Other Articles</h1>
             <ArticlesList articles={otherArticles} />
         </>
