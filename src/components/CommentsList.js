@@ -4,11 +4,16 @@ import React from 'react';
 const CommentsList=({comments})=>(
     <>
         <h3>Comments:</h3>
-        {comments.map((comment)=>(
-            <div className="comment">
+        {comments.map((comment,key)=>(
+            (
+                (comment.username!==''||comment.username!=='')
+                &&(comment.text!==''||comment.text!=='')
+            )
+            ?(<div className="comment" key={key}>
                 <h4>{comment.username}</h4>
                 <p>{comment.text}</p>
-            </div>
+            </div>)
+            :(<></>)
         ))}
     </>
 );
