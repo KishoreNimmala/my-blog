@@ -9,6 +9,12 @@ const ArticlePage=({match})=>{
     const article=articleContent.find(article=>article.name===name);
     
     useEffect(()=>{
+        const fetchData= async () =>{
+            const result =await fetch(`/api/articles/${name}`);
+            const body=await result.json();
+            setArticleInfo(body);
+        }
+        fetchData();
         setArticleInfo({
             upvotes:Math.ceil(Math.random()*10)
         });
@@ -25,7 +31,7 @@ const ArticlePage=({match})=>{
             <h1>{article.title}</h1>
             <p>This post has been upvoted {articleInfo.upvotes} times </p>
             {article.content.map((paragraph,i)=>(
-                <p>
+                <p key={i}>
                     {paragraph}
                 </p>
             ))}
